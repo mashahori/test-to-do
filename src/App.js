@@ -1,25 +1,33 @@
-import logo from './logo.svg';
+
+import { useState } from 'react';
+import { Adder, List } from './components';
 import './App.css';
 
-function App() {
+const App = () => {
+  const [items, setItems] = useState([]);
+  const [error, setError] = useState(false);
+
+  const addItem = (el) => {
+    if (items.indexOf(el) === -1) {
+      setError(false);
+      setItems([...items, el]);
+    } else {
+      setError(true);
+    }
+  };
+  
+  const deleteItem = (el) => {
+    const index = items.indexOf(el);
+    const newArray = [...items.slice(0, index), ...items.slice(index + 1, items.length)];
+    setItems(newArray);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Adder addItem={(el) => addItem(el)} error={error} />
+      <List items={items} deleteItem={(el) => deleteItem(el) } />
     </div>
-  );
-}
+  )
+};
 
 export default App;
