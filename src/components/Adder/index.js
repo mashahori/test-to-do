@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Input, Button, withStyles } from '@material-ui/core';
+import { TextField, Button, withStyles } from '@material-ui/core';
 import './index.css';
 
 const StyledButton = withStyles({
@@ -8,16 +8,17 @@ const StyledButton = withStyles({
   }
 })(Button);
 
-const Adder = ({ addItem, error }) => {
+const Adder = ({ addItem, error, helperText }) => {
   const [value, setValue] = useState('');
 
   return (
     <div className="container">
-      <Input
+      <TextField
        placeholder="Write here"
        onChange={(e)=> setValue(e.target.value)}
        error={error}
        fullWidth
+       helperText={<span>{helperText}</span>}
       />
       <StyledButton onClick={() => value && addItem(value)}>
         Add

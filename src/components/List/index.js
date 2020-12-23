@@ -1,10 +1,11 @@
-import { List as MLIst, ListItem, IconButton, ListItemText } from '@material-ui/core';
+import { List as MuiLIst, ListItem, IconButton, ListItemText, Checkbox } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 const List = ({ items, deleteItem }) => (
-  <MLIst>
-    {items.map((item) => (
+  <MuiLIst>
+    {items && items.map((item) => (
       <ListItem key={item}>
+        <Checkbox />
         <ListItemText
             primary={item}
           />
@@ -13,7 +14,7 @@ const List = ({ items, deleteItem }) => (
         </IconButton>
       </ListItem>
     ))}
-  </MLIst>
+  </MuiLIst>
 );
 
 export default List;

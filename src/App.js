@@ -1,18 +1,19 @@
 
 import { useState } from 'react';
-import { Adder, List } from './components';
+import { Adder, List, Tabs } from './components';
 import './App.css';
 
 const App = () => {
   const [items, setItems] = useState([]);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState('');
 
   const addItem = (el) => {
-    if (items.indexOf(el) === -1) {
-      setError(false);
-      setItems([...items, el]);
+    if (items.indexOf(el) !== -1) {
+      setError('already exist');
+    } else if (el.length > 10) {
+      setError('no more then 10')
     } else {
-      setError(true);
+      setItems([...items, el]);
     }
   };
   
@@ -24,7 +25,8 @@ const App = () => {
 
   return (
     <div className="App">
-      <Adder addItem={(el) => addItem(el)} error={error} />
+      <Adder addItem={(el) => addItem(el)} error={error ? true : false} helperText={error} />
+      <Tabs />
       <List items={items} deleteItem={(el) => deleteItem(el) } />
     </div>
   )
