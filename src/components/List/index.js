@@ -1,18 +1,16 @@
-import { List as MuiLIst, ListItem, IconButton, ListItemText, Checkbox } from '@material-ui/core';
-import DeleteIcon from '@material-ui/icons/Delete';
+import { List as MuiLIst } from '@material-ui/core';
+import Item from '../../components/Item';
 
-const List = ({ items, deleteItem }) => (
+const List = ({ items, deleteItem, checkItem }) => (
   <MuiLIst>
+    <span>Count: {items.length}</span>
     {items && items.map((item) => (
-      <ListItem key={item}>
-        <Checkbox />
-        <ListItemText
-            primary={item}
-          />
-        <IconButton edge="end" aria-label="delete" onClick={() => deleteItem(item)}>
-          <DeleteIcon />
-        </IconButton>
-      </ListItem>
+      <Item
+        key={item.name}
+        el={item}
+        checkItem={(el) => checkItem(el)}
+        deleteItem={(el) => deleteItem(el)}
+      />
     ))}
   </MuiLIst>
 );

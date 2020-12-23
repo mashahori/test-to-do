@@ -20,7 +20,7 @@ const Adder = ({ addItem, error, helperText }) => {
        fullWidth
        helperText={<span>{helperText}</span>}
       />
-      <StyledButton onClick={() => value && addItem(value)}>
+      <StyledButton onClick={() => value && addItem({ name: value, checked: false})}>
         Add
       </StyledButton>
     </div>
