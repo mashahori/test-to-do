@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Tabs as MuiTabs, Tab, withStyles, TabPanel } from '@material-ui/core';
+import { Tabs as MuiTabs, Tab, withStyles } from '@material-ui/core';
 import './index.css';
 
 const StyledTabs = withStyles({
@@ -17,16 +17,17 @@ const Tabs = ({ changeList }) => {
   }
 
   return (
+    <>
     <StyledTabs
      value={value}
      onChange={changeTabs}
      indicatorColor="primary"
     >
-      <Tab label={`All`} />
+      <Tab label='All' />
       <Tab label="Done" />
       <Tab label="Undone" />
-
     </StyledTabs>
+    </>
   );
 };
 
