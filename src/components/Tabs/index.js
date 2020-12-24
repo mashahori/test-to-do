@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Tabs as MuiTabs, Tab, withStyles } from '@material-ui/core';
 import './index.css';
 
@@ -8,18 +7,16 @@ const StyledTabs = withStyles({
   }
 })(MuiTabs);
 
-const Tabs = ({ changeList }) => {
-  const [value, setValue] = useState(0);
+const Tabs = ({ changeList, tab }) => {
 
   const changeTabs = (event, newValue) => {
-    setValue(newValue);
     changeList(newValue);
   }
 
   return (
     <>
     <StyledTabs
-     value={value}
+     value={tab}
      onChange={changeTabs}
      indicatorColor="primary"
     >
